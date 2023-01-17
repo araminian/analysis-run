@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisRun
 metadata:
-  name: {{ printf "%s-%s" "analysis" .Values.analysisSuffix }}
+  name: {{ printf "%s-%s" "analysis" (toString .Values.analysisSuffix) }}
   namespace: default
 spec:
   args:
