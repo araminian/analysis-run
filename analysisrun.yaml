@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisRun
+metadata:
+  name: analysis-1
+  namespace: default
+spec:
+  args:
+    - name: active-service
+      value: api-user-active
+    - name: preview-service
+      value: api-user-preview
+  metrics:
+    - name: service-tester
+      provider:
+        job:
+          spec:
+            backoffLimit: 1
+            template:
+              spec:
+                containers:
+                  - image: busybox
+                    command: ["/bin/sh"]
+                    args:
+                      - "-c"
+                      - "sleep 30 && echo '{{args.preview-service}}' && sleep 30;exit 0;"
+                    name: checker
+                restartPolicy: Never
