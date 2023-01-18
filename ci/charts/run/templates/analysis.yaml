@@ -3,6 +3,10 @@ kind: AnalysisRun
 metadata:
   name: {{ printf "%s-%s" "analysis" (toString .Values.analysisSuffix) }}
   namespace: default
+  annotations:
+    notifications.argoproj.io/subscribe.on-analysis-run-failed.github: ""
+    notifications.argoproj.io/subscribe.on-analysis-run-success.github: ""
+    notifications.argoproj.io/subscribe.on-analysis-run-running.github: ""
 spec:
   args:
     - name: active-service
