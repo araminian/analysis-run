@@ -7,6 +7,8 @@ metadata:
     notifications.argoproj.io/subscribe.on-analysis-run-failed.github: ""
     notifications.argoproj.io/subscribe.on-analysis-run-success.github: ""
     notifications.argoproj.io/subscribe.on-analysis-run-running.github: ""
+    repository: {{ .Values.repoURL }}
+    revision: {{ .Values.targetRevision }}
 spec:
   args:
     - name: active-service
